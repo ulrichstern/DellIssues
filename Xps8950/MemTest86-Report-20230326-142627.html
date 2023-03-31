@@ -1,0 +1,478 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style>
+/* 
+You can change the fonts, colors, and styles of your Certificate report with the CSS below.
+Please see the help file
+CHANGES CAN BE MADE HERE
+*/
+/* Plain */
+/*
+body, p { font-family: Arial, sans-serif; color:black; width: 600px; font-size: 10px}
+h1 {  width: 640px;	margin-bottom:20px; }
+h2 {  width: 640px;	margin-bottom:15px;	font-size: 16px; font-weight: normal}
+.failstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid red; font-family: Arial; font-size: 50px; font-weight: bold; color:red; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+.passstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid green; font-family: Arial; font-size: 50px; font-weight: bold; color:green; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+
+li { margin-top:10px; margin-bottom:10px; }
+
+.header table {  width: 640px; margin:0px; text-align: left; }
+
+.summary table, tr {  width: 600px; margin-left:20px; font-size: 10px; margin-bottom: 20px; border-collapse: collapse; }
+.summary td { padding-left:5px; }
+.summary td.PASS {  }
+.summary td.FAIL {  }
+
+.sysinfo table, tr {  width: 600px; margin-left:20px; font-size: 10px; margin-bottom: 20px; border-collapse: collapse; }
+.sysinfo td { border: 1px solid black; padding-left:5px; text-align: left; }
+.sysinfo td.value {  }
+.sysinfo td.subvalue { padding-left:25px; }
+.sysinfo td.altvalue { }
+.sysinfo td.PASS {  }
+.sysinfo td.FAIL {  }
+
+
+div.results {  width: 600px; margin-left:20px; font-size: 10px; margin-bottom: 20px; }
+div.results table {  width: 100%; margin-bottom: 10px; border-collapse: collapse; }
+
+div.results table.errormask { border: 0; border-collapse: collapse; }
+div.results table.errormask tr { height: 10px; }
+div.results table.errormask td { border: 1px solid black; }
+div.results table.errormask tr.noborder td { padding : 0; border : 0; font-size: 8px; }
+div.results table.errormask td.bitok { background-color: green; color: green; padding : 0; font-family: Courier New, Courier, monospace; }
+div.results table.errormask td.biterr { background-color: red; color: red; padding : 0; font-family: Courier New, Courier, monospace; }
+
+.results tr.fail {  }
+.results td { border: 1px solid black; padding-left:5px; text-align: left; }
+.results td.value {  }
+.results td.altvalue {  }
+.results td.PASS { }
+.results td.FAIL { }
+.results td.header {  background-color:#222222; color:white; }
+
+.footer { font-size: 10px; margin-top: 10px; text-align: left}
+.footer p { font-size: 9px; border-top: solid #000000 1px; margin-top: 10px; }
+.footer table, tr {  width: 600px; margin-left:20px; font-size: 10px; margin-bottom: 20px; border-collapse: collapse; }
+.footer td { padding-left:5px; border: none}
+*/
+
+/* Default */
+
+body, p {  font-family: Verdana, Geneva, sans-serif;  font-size:11px; width: 600px;	margin-bottom: 20px; border-collapse: collapse; }
+h1 {  width: 640px;	margin-bottom:20px; }
+h2 {  width: 640px;	margin-bottom:15px;	border-bottom: 2px solid #6678b1; border-collapse: collapse; }
+.failstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid red; font-family: Arial; font-size: 50px; font-weight: bold; color:red; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+.passstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid green; font-family: Arial; font-size: 50px; font-weight: bold; color:green; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+
+li { margin-top: 10px; margin-bottom: 10px; }
+
+.header table { width: 640px; margin:0px; text-align: left; }
+
+.summary table, tr {  width: 600px; margin-left:10px; font-size: 10px;  }
+.summary td { text-align: left; }
+.summary td.PASS { font-weight: bold; color: green; }
+.summary td.FAIL { font-weight: bold; color: FireBrick; }
+
+.sysinfo table, tr {  width: 600px; margin-left:10px; font-size: 10px;  }
+.sysinfo td { text-align: left; }
+.sysinfo td.value { background-color: #EEEEEE; }
+.sysinfo td.subvalue { background-color: #EEEEEE; padding-left:25px; }
+.sysinfo td.altvalue { background-color: #DDDDFF; }
+.sysinfo td.PASS { font-weight: bold; color: green; }
+.sysinfo td.FAIL { font-weight: bold; color: FireBrick; }
+
+div.results { width: 600px; margin: 10px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; }
+div.results table { width: 100%; border: solid #AAAADD 1px; margin: 10px; }
+
+div.results table.errormask { border: 0; border-collapse: collapse; }
+div.results table.errormask tr { height: 10px; }
+div.results table.errormask td { border: 1px solid black; }
+div.results table.errormask tr.noborder td { padding : 0; border : 0; font-size: 8px; }
+div.results table.errormask td.bitok { background-color: green; color: green; padding : 0; font-family: Courier New, Courier, monospace; }
+div.results table.errormask td.biterr { background-color: red; color: red; padding : 0; font-family: Courier New, Courier, monospace; }
+
+.results tr.fail { color: #FF0000; }
+.results td { text-align: left;}
+.results td.PASS { font-weight: bold; color: green; background-color: #DDDDFF;}
+.results td.FAIL { font-weight: bold; color: FireBrick; background-color: #DDDDFF; }
+.results td.header { background-color: #CCCCCC; font-weight: bold; }
+.results td.value { background-color: #EEEEEE; }
+.results td.altvalue { background-color: #DDDDFF; }
+
+.footer { width: 640px;	margin-top: 10px; text-align: left}
+.footer p { font-size: 9px; border-top: solid #AAAADD 1px; margin-top: 10px; }
+.footer table, tr {  width: 600px; border: none; margin-left:10px; font-size: 10px;  }
+.footer td { padding-left:5px; border: none}
+
+/* Soft */
+/*
+body,p { width: 600px; font-family: Tahoma, Verdana, sans-serif; color:black; font-size: 12px; margin-bottom: 20px; }
+h1 { font-size: 2.0em; 	font-weight: normal; border-bottom: 4px solid #A3A3A3; }
+h2 { font-size: 1.5em;  color: #333; line-height: 30px;	font-style: normal; font-weight: bold;	border-bottom: 4px solid #E3E3E3; }
+.failstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid red; font-family: Arial; font-size: 50px; font-weight: bold; color:red; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+.passstamp { position: absolute; top: 16px; left: 500px; width: 150px; padding: 5px 0; border: 5px solid green; font-family: Arial; font-size: 50px; font-weight: bold; color:green; text-align: center; text-transform: uppercase; transform: rotate(-10deg);}
+
+li { margin-top:10px; margin-bottom:10px;}
+
+.header table {  width:640px; margin: 0; }
+
+.summary table {  width:600px; margin-bottom: 20px; font-size: 12px }
+.summary td {	padding:0.25em }
+.summary td.PASS { }
+.summary td.FAIL { }
+
+.sysinfo table {  width:600px; margin-bottom: 20px; font-size: 12px }
+.sysinfo td {	padding:0.25em }
+.sysinfo td.value {	background-color: #DEDEDE; }
+.sysinfo td.subvalue {	background-color: #DEDEDE; padding-left:5%;}
+.sysinfo td.altvalue { background-color: #F0F0F0; }
+.sysinfo td.PASS { }
+.sysinfo td.FAIL { }
+
+
+div.results {  width:600px; margin-bottom: 20px; font-size: 12px }
+div.results table {  width:100%; margin-bottom: 10px; }
+
+div.results table.errormask { border: 0; border-collapse: collapse; }
+div.results table.errormask tr { height: 10px; }
+div.results table.errormask td { border: 1px solid black; }
+div.results table.errormask tr.noborder td { padding : 0; border : 0; font-size: 8px; }
+div.results table.errormask td.bitok { background-color: green; color: green; padding : 0; font-family: Courier New, Courier, monospace; }
+div.results table.errormask td.biterr { background-color: red; color: red; padding : 0; font-family: Courier New, Courier, monospace; }
+
+.results tr.fail {  }
+.results td {	padding:0.25em; text-align: left }
+.results td.header { background-color: #CCCCCC; font-weight: }
+.results td.value {	background-color: #DEDEDE; }
+.results td.altvalue { background-color: #F0F0F0; }
+.results td.PASS { }
+.results td.FAIL { }
+
+.footer { font-size: 10px; text-align: left}
+.footer p { font-size: 9px; border-top: dotted black 1px; margin-top: 10px; }
+.footer table, tr {  width:600px; margin-bottom: 20px; font-size: 12px }
+.footer td { padding:0.25em }
+*/
+
+/* Typewriter */
+/*
+body, p { font-family: Courier New, Courier; color:black; width: 600px; font-size: 11px; }
+h1 { font-size:2.0em;}
+h2 { font-size:1.75em; }
+
+.header table {  width:640px; margin: 0; }
+
+.summary table {  width:600px; margin-left: 15px; border-collapse: collapse; margin-bottom: 20px; font-size: 1.0em;  }
+.summary td { }
+.summary td.PASS { }
+.summary td.FAIL { }
+
+.sysinfo table {  width:600px; margin-left: 15px; border-collapse: collapse; margin-bottom: 20px; font-size: 1.0em;  }
+.sysinfo td { border: 1px solid black; padding:0.25em; }
+.sysinfo td.value { background-color: #EEEEEE; }
+.sysinfo td.subvalue { background-color: #EEEEEE; padding-left: 5%; }
+.sysinfo td.altvalue { }
+
+.results table {  width:600px; margin-left: 15px; border-collapse: collapse; margin-bottom: 20px; font-size: 1.0em;  }
+.results tr.fail {  }
+.results td { border: 1px solid black; padding:0.25em; }
+.results td.header { background-color: #CCCCCC; font-weight: bold; text-align: left; }
+.results td.value { background-color: #EEEEEE; }
+.results td.altvalue {  }
+.results td.PASS { }
+.results td.FAIL { }
+
+.footer { font-size: 10px; text-align: left}
+.footer p { font-size: 9px; border-top: dotted black 1px; margin-top: 10px; }
+.footer table, tr {  width:600px; margin-left: 15px; border-collapse: collapse; margin-bottom: 20px; font-size: 1.0em;  }
+.footer td { border: none}
+*/</style>
+</head>
+<body>
+<!-- 
+You can change the fonts, colors, and styles of your Certificate report with the CSS below.
+Please see the help file
+CHANGES CAN BE MADE HERE
+-->
+<div class="header">
+<table>
+<tr>
+<td>
+<img src="https://www.memtest86.com/img/mt86.png">
+</td>
+</tr>
+</table><div class="failstamp">FAIL</div>
+<h2>Summary</h2>
+<div class="summary">
+<table>
+<tr>
+<td width="35%">Report Date</td>
+<td width="65%">2023-03-31 10:36:15</td>
+</tr>
+<tr>
+<td width="35%">Generated by</td>
+<td width="65%">
+MemTest86 V10.2 Pro (64-bit)<br />
+</td>
+</tr>
+<tr>
+<td width="35%">Result</td>
+<td width="65%" class="FAIL">FAIL</td>
+</tr>
+</table>
+</div>
+<h2>System Information</h2>
+<div class="sysinfo">
+<table>
+<tr>
+<td width="35%" class="value">EFI Specifications</td>
+<td width="65%" class="altvalue">2.80</td>
+</tr>
+<tr>
+<td width="35%" class="value">System</td>
+<td width="65%" class="altvalue"></td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Manufacturer</td>
+<td width="65%" class="altvalue">Dell Inc.</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Product Name</td>
+<td width="65%" class="altvalue">XPS 8950</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Version</td>
+<td width="65%" class="altvalue"></td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Serial Number</td>
+<td width="65%" class="altvalue"><i>HIDDEN</i></td>
+</tr>
+<tr>
+<td width="35%" class="value">BIOS</td>
+<td width="65%" class="altvalue"></td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Vendor</td>
+<td width="65%" class="altvalue">Dell Inc.</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Version</td>
+<td width="65%" class="altvalue">1.11.1</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Release Date</td>
+<td width="65%" class="altvalue">02/23/2023</td>
+</tr>
+<tr>
+<td width="35%" class="value">Baseboard</td>
+<td width="65%" class="altvalue"></td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Manufacturer</td>
+<td width="65%" class="altvalue">Dell Inc.</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Product Name</td>
+<td width="65%" class="altvalue">0R6PCT</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Version</td>
+<td width="65%" class="altvalue">A01</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">Serial Number</td>
+<td width="65%" class="altvalue">.<i>HIDDEN</i>.CNFCW0023P007Z.</td>
+</tr>
+<tr>
+<td width="35%" class="value">CPU Type</td>
+<td width="65%" class="altvalue">12th Gen Intel Core i7-12700</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">CPU Clock</td>
+<td width="65%" class="altvalue">2140 MHz [Turbo: 4617.7 MHz]</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue"># Logical Processors</td>
+<td width="65%" class="altvalue">20</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">L1 Cache</td>
+<td width="65%" class="altvalue">32 x 80K (619316 MB/s)</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">L2 Cache</td>
+<td width="65%" class="altvalue">8 x 1280K (122046 MB/s)</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">L3 Cache</td>
+<td width="65%" class="altvalue">25600K (51945 MB/s)</td>
+</tr>
+<tr>
+<td width="35%" class="value">Memory</td>
+<td width="65%" class="altvalue">16119M (18229 MB/s)</td>
+</tr>
+<tr>
+<td width="35%" class="value">Number of RAM SPDs detected</td>
+<td width="65%" class="altvalue">0</td>
+</tr>
+<tr>
+<td width="35%" class="value">Number of RAM slots</td>
+<td width="65%" class="altvalue">4</td>
+</tr>
+<tr>
+<td width="35%" class="value">Number of RAM modules</td>
+<td width="65%" class="altvalue">1</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">  DIMM Slot #0</td>
+<td width="65%" class="altvalue">Empty slot</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">  DIMM Slot #1</td>
+<td width="65%" class="altvalue">16GB DDR5 PC5-38400</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue"></td>
+<td width="65%" class="altvalue">301000003075 / CT16G48C40U5.M8A1    / E71D9D87</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue"></td>
+<td width="65%" class="altvalue">4800 MHz</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">  DIMM Slot #2</td>
+<td width="65%" class="altvalue">Empty slot</td>
+</tr>
+<tr>
+<td width="35%" class="subvalue">  DIMM Slot #3</td>
+<td width="65%" class="altvalue">Empty slot</td>
+</tr>
+</table>
+</div>
+<h2>Result summary</h2>
+<div class="results">
+<table>
+<tr><td width="35%" class="value">Test Start Time</td><td width="65%" class="altvalue">2023-03-26 14:26:27</td></tr>
+<tr><td width="35%" class="value">Elapsed Time</td><td width="65%" class="altvalue">116:09:31</td></tr>
+<tr>
+<td width="35%" class="value">Memory Range Tested</td>
+<td width="65%" class="altvalue">0x0 - 47FC00000 (18428MB)</td>
+</tr>
+<tr>
+<td width="35%" class="value">CPU Selection Mode</td>
+<td width="65%" class="altvalue">Parallel (All CPUs)</td>
+</tr>
+<tr>
+<td width="35%" class="value">CPU Temperature Min/Max/Ave</td>
+<td width="65%" class="altvalue">51C/82C/78C</td>
+</tr>
+<tr>
+<td width="35%" class="value">RAM Temperature Min/Max/Ave</td>
+<td width="65%" class="altvalue">33C/44C/43C</td>
+</tr>
+<tr>
+<td width="35%" class="value"># Tests Passed</td>
+<td width="65%" class="FAIL">884/885 (99%)</td>
+</tr>
+</table>
+<table>
+<tr><td width="35%" class="value">Lowest Error Address</td><td width="65%" class="altvalue">0x35870C650 (13703MB)</td></tr>
+<tr><td width="35%" class="value">Highest Error Address</td><td width="65%" class="altvalue">0x35870CAF4 (13703MB)</td></tr>
+<tr><td width="35%" class="value">Bits in Error Mask</td><td width="65%" class="altvalue">FFFFFFFFFF00FF00</td></tr>
+<tr><td width="35%" class="value">Bits in Error</td><td width="65%" class="altvalue">48</td></tr>
+<tr><td width="35%" class="value">Max Contiguous Errors</td><td width="65%" class="altvalue">2</td></tr>
+<tr><td width="35%" class="value">CPUs that detected memory errors</td><td width="65%" class="altvalue">{ 9 }</td></tr>
+</table>
+<div>Bits in Error</div>
+<table class="errormask">
+<tr><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="biterr">x</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td><td class="bitok">.</td></tr>
+<tr class="noborder"><td>63</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style="text-align:right">0</td></tr>
+</table>
+<table>
+<tr>
+<td width="20%" class="header">DIMM/Chip</td>
+<td width="20%" class="header">Errors</td>
+</tr>
+<tr><td width="20%" class="value">A2 (1Rx8)</td><td width="20%" class="altvalue">30</td></tr>
+</table>
+<table>
+<tr>
+<td width="60%" class="header">Test</td>
+<td width="20%" class="header"># Tests Passed</td>
+<td width="20%" class="header">Errors</td>
+</tr>
+<tr class="fail">
+<td width="60%" class="value">Test 7 [Moving inversions, 32-bit pattern]</td>
+<td width="20%" class="altvalue">884/885 (99%)</td>
+<td width="20%" class="altvalue">30</td>
+</tr>
+</table>
+<table>
+<tr><td class="header">Last 10 Errors</td></tr>
+<tr><td class="value">2023-03-31 06:11:55 - [Data Error] Test: 7, CPU: 9, Address: 35870CAF4/A2, Expected: FFFDFFFF, Actual: FFFD7FFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAF0/A2, Expected: FFFEFFFF, Actual: FFFEBFFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAEC/A2, Expected: FFFF7FFF, Actual: FFFFDFFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAE8/A2, Expected: FFFFBFFF, Actual: FFFFEFFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAE4/A2, Expected: FFFFDFFF, Actual: FFFFF7FF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAE0/A2, Expected: FFFFEFFF, Actual: FFFFFBFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CADC/A2, Expected: FFFFF7FF, Actual: FFFFFDFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAD8/A2, Expected: FFFFFBFF, Actual: FFFFFEFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAD4/A2, Expected: FFFFFDFF, Actual: FFFFFFFF</td></tr>
+<tr><td class="value">2023-03-31 06:11:54 - [Data Error] Test: 7, CPU: 9, Address: 35870CAD0/A2, Expected: FFFFFEFF, Actual: FFFFFFFF</td></tr>
+</table>
+<table>
+<tr><td class="header">Temporary workaround for Grub2 Linux: BadRAM filtering</td></tr>
+<tr><td class="value">
+ <p>For Unix-based distributions that use GRUB2 as a bootloader, BadRAM filtering can be used to exclude known defective memory addreses from being used by the operating system. This temporary workaround can be applied as follows:</p>
+ <ol>
+  <li>Copy & paste the following faulty memory ranges to <code>/etc/default/grub</code>:</li>
+  <code style="white-space: pre-wrap; word-break: break-all;">GRUB_BADRAM="0x00000035870C000,0xFFFFFFFFFFFFF000"</code>
+  <li>Open and terminal and run the following command</li>
+  <code>sudo update-grub</code>
+ </ol>
+<i>Warning: Masking faulty memory addresses does not fix defective RAM, but provides a temporary workaround for allowing the system to boot. Please consult the <a href="https://www.memtest86.com/troubleshooting.htm">FAQ</a> for more details</i>
+</td></tr>
+</table>
+<table>
+<tr><td class="header">Temporary workaround for Windows: badmemorylist filtering in BCD store</td></tr>
+<tr><td class="value">
+ <p>For Windows Vista and later, the Boot Configuration Data (BCD) store can be used to exclude physical page frames (PFN) from being used by the operating system. This temporary workaround can be applied as follows:</p>
+ <ol>
+  <li>Open the Command Prompt (as Adminstrator) either from Windows or System Recovery options</li>
+  <li>Run the following command to enable memory blacklisting:</li>
+  <code>bcdedit /set {badmemory} badmemoryaccess no</code>
+  <li>Run the following command to blacklist the faulty page frame numbers (PFN):</li>
+  <code style="white-space: pre-wrap; word-break: break-all;">bcdedit /set {badmemory} badmemorylist 0x35870C</code>
+ </ol>
+<i>Warning: Masking faulty memory addresses does not fix defective RAM, but provides a temporary workaround for allowing the system to boot. Please consult the <a href="https://www.memtest86.com/troubleshooting.htm">FAQ</a> for more details</i>
+</td></tr>
+</table>
+</div>
+<!-- 
+You can modify the certification text by editing the following text.
+CHANGES CAN BE MADE HERE
+-->
+<div class="footer">
+<h2>Certification</h2>
+<table width="640">
+  <tr>
+    <td> 
+      This document certifies that the Tests described above have been 
+        carried out by a suitably qualified technician on the System described 
+        above.
+    </td>
+  </tr>
+</table>
+
+Signed<br><br>
+___________________________<br>
+<p>
+Your company name here<br>
+123 Your Address, City, Country<br>
+Phone 123-456-7890<br>
+E-Mail: info@your-company-name.com<br>
+</p>
+</div></body>
+</html>
